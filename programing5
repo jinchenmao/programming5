@@ -1,1 +1,54 @@
 
+public class SliceOHeaven {
+    // Method to process card payment
+    public void processCardPayment(String cardNumber, String expiryDate, int cvv) {
+        // Check card length
+        int cardLength = cardNumber.length();
+        if (cardLength == 14) {
+            System.out.println("Card accepted");
+        } else {
+            System.out.println("Invalid card");
+        }
+
+        // Extract first digit
+        int firstCardDigit = Integer.parseInt(cardNumber.substring(0, 1));
+        System.out.println("First Digit: " + firstCardDigit);
+
+        // Check for blacklisted card
+        String blacklistedNumber = "12345678901234"; // Example blacklisted number
+        if (cardNumber.equals(blacklistedNumber)) {
+            System.out.println("Card is blacklisted. Please use another card");
+        }
+
+        // Extract last four digits
+        int lastFourDigits = Integer.parseInt(cardNumber.substring(cardNumber.length() - 4));
+        System.out.println("Last Four Digits: " + lastFourDigits);
+
+        // Mask card number
+        String cardNumberToDisplay = cardNumber.charAt(0) + 
+            "*".repeat(cardNumber.length() - 5) + 
+            cardNumber.substring(cardNumber.length() - 4);
+        System.out.println("Masked Card Number: " + cardNumberToDisplay);
+    }
+
+    // Method to display special of the day
+    public void specialOfTheDay(String pizzaOfTheDay, String sideOfTheDay, String specialPrice) {
+        StringBuilder special = new StringBuilder();
+        special.append("Today's Special:\n");
+        special.append("Pizza: ").append(pizzaOfTheDay).append("\n");
+        special.append("Side: ").append(sideOfTheDay).append("\n");
+        special.append("Price: ").append(specialPrice).append("\n");
+        System.out.println(special.toString());
+    }
+
+    // Main method to test the program
+    public static void main(String[] args) {
+        SliceOHeaven sliceOHeaven = new SliceOHeaven();
+
+        // Test processCardPayment()
+        sliceOHeaven.processCardPayment("12345678901234", "12/25", 123);
+
+        // Test specialOfTheDay()
+        sliceOHeaven.specialOfTheDay("Pepperoni Pizza", "Garlic Bread", "$10.99");
+    }
+}
